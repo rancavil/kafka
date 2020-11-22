@@ -24,6 +24,9 @@ If you want to know what's happen inside the container, execute the following co
 Verifiying if container is running.
 
      $ docker ps
+     CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                             NAMES
+     e44d345e8703        kafka:2.6.0         "supervisord -n"    11 seconds ago      Up 4 seconds        2181/tcp, 9093-9094/tcp, 0.0.0.0:9092->9092/tcp   <container-name>
+
 
 We can use the following example to verify if Kafka is working. We are going to use a **python** and their **kafka module**. We will write a consumer and a producer.
 
@@ -35,29 +38,30 @@ You have to install **python kafka module**.
 
 Writing **producer.py**
 
-     #!/usr/bin/env python
-
-     import kafka as k
-     import time
-
-     if __name__ == '__main__':
-         producer = k.KafkaProducer(bootstrap_servers=['<hostname/ip address>:9092'])
-         print('Sending Data')
-         for i in range(1,101):
-             print('Sendind Data {}'.format(i))
-             producer.send('topic1',b'Data {}'.format(i))
-             time.sleep(1)
-     producer.flush()
+    #!/usr/bin/env python
+     
+    import kafka as k
+    import time
+    
+    if __name__ == '__main__':
+        producer = k.KafkaProducer(bootstrap_servers=['<hostname/ip address>:9092'])
+        print('Sending Data')
+        for i in range(1,101):
+            print('Sendind Data {}'.format(i))
+            producer.send('topic1',b'Data %d'%(i))
+            time.sleep(1)
+        producer.flush()
 
 Writing **consumer.py**
 
-     #!/usr/bin/env python
+    #!/usr/bin/env python
 
-     import kafka as k
+    import kafka as k
 
-     if __name__ == '__main__':
-         consumer = k.KafkaConsumer('topic1',bootstrap_servers=['<hostname/ip address>:9092'])
-         for msg in consumer:
-             print (msg.value)
+    if __name__ == '__main__':
+        consumer = k.KafkaConsumer('topic1',bootstrap_servers=['<hostname/ip address>:9092'])
+        print('Receiving Data')
+        for msg in consumer:
+            print (msg.value)
 
 **Important:** you must set up **<hostname/ip address>**. If you are in a local environment you can use **localhost**
