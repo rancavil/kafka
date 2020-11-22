@@ -27,9 +27,9 @@ Verifiying if container is running.
 
 We can use the following example to verify if Kafka is working. We are going to use a **python** and their **kafka module**. We will write a consumer and a producer.
 
-The producer will send messages to topic (called topic_1) and the consumer will read from.
+The producer will send messages to topic (called **topic1**) and the consumer will read from.
 
-Installing python kafka module.
+You have to install **python kafka module**.
 
      $ pip install kafka-python
 
@@ -45,7 +45,7 @@ Writing **producer.py**
          print('Sending Data')
          for i in range(1,101):
              print('Sendind Data {}'.format(i))
-             producer.send('topic_1',b'Hey this is data {}'.format(i))
+             producer.send('topic1',b'Data {}'.format(i))
              time.sleep(1)
      producer.flush()
 
@@ -56,8 +56,8 @@ Writing **consumer.py**
      import kafka as k
 
      if __name__ == '__main__':
-         consumer = k.KafkaConsumer('topic_1',bootstrap_servers=['<hostname/ip address>:9092'])
+         consumer = k.KafkaConsumer('topic1',bootstrap_servers=['<hostname/ip address>:9092'])
          for msg in consumer:
              print (msg.value)
 
-**Important:** you must set up <hostname/ip address>. If you are in a local environment you can use **localhost**
+**Important:** you must set up **<hostname/ip address>**. If you are in a local environment you can use **localhost**
