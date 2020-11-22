@@ -65,3 +65,27 @@ Writing **consumer.py**
             print (msg.value)
 
 **Important:** you must set up **<hostname/ip address>**. If you are in a local environment you can use **localhost**
+
+You have to execute:
+
+The **producer**.
+
+     $ python producer.py
+     Sending Data
+     Sendind Data 1
+     Sendind Data 2
+     Sendind Data 3
+     ....
+     ...
+     ..
+
+In another terminal the **consumer**.
+
+     $ python consumer.py
+     Data 1
+     Data 2
+     Data 3
+     ....
+     ...
+     ..
+   
