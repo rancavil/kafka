@@ -1,6 +1,6 @@
 # Kafka Docker Environment
 
-## Clone the git repositoy
+## Clone the git repository
 
      $ git clone https://github.com/rancavil/kafka.git
      $ cd kafka
