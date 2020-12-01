@@ -89,3 +89,26 @@ In another terminal the **consumer**.
      ...
      ..
    
+Another way to test how kafka container is working.
+
+**Creating a topic**
+
+We will create a topic called **TOPIC_TEST**
+
+     $ docker exec -i <container-name> bin/kafka-topics.sh --create --topic TOPIC_TEST --bootstrap-server localhost:9092
+
+**Writing some messages (events)**
+
+We must execute and write messages (events) using the **TOPIC_TEST**
+
+     $ docker exec -i <container-name> bin/kafka-console-producer.sh --topic TOPIC_TEST --bootstrap-server localhost:9092
+     >This is an event with data
+     >Another event
+
+**Reading messages (events)**
+
+This command executes a kafka consumer and wait for events.
+
+     $ docker exec -i <container-name> bin/kafka-console-consumer.sh --topic TOPIC_TEST --from-beginning --bootstrap-server localhost:9092
+     This is an event with data
+     Another event
