@@ -107,7 +107,7 @@ We must execute and write messages (events) using the **TOPIC_TEST**
 
 **Reading messages (events)**
 
-This command executes a kafka consumer and wait for events.
+The command executes a kafka consumer and wait for events, reading from **TOPIC_TEST**.
 
      $ docker exec -i <container-name> bin/kafka-console-consumer.sh --topic TOPIC_TEST --from-beginning --bootstrap-server localhost:9092
      This is an event with data
