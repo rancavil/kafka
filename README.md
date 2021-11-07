@@ -108,20 +108,20 @@ Another way to test how kafka container is working.
 
 We will create a topic called **TOPIC_TEST**
 
-     $ docker exec -i <container-name> bin/kafka-topics.sh --create --topic TOPIC_TEST --bootstrap-server localhost:9092
+     $ docker exec -i kafka-1 bin/kafka-topics.sh --create --topic TOPIC-TEST --bootstrap-server localhost:9092 --partitions 2 --replication-factor 1
 
 **Writing some messages (events)**
 
 We must execute and write messages (events) using the **TOPIC_TEST**
 
-     $ docker exec -i <container-name> bin/kafka-console-producer.sh --topic TOPIC_TEST --bootstrap-server localhost:9092
-     >This is an event with data
-     >Another event
+     $ docker exec -i <container-name> bin/kafka-console-producer.sh --topic TOPIC-TEST --bootstrap-server localhost:9092
+     This is an event with data
+     Another event
 
 **Reading messages (events)**
 
 The command executes a kafka consumer and wait for events, reading from **TOPIC_TEST**.
 
-     $ docker exec -i <container-name> bin/kafka-console-consumer.sh --topic TOPIC_TEST --from-beginning --bootstrap-server localhost:9092
+     $ docker exec -i <container-name> bin/kafka-console-consumer.sh --topic TOPIC-TEST --from-beginning --bootstrap-server localhost:9092
      This is an event with data
      Another event

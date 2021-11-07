@@ -17,5 +17,6 @@ COPY start-zookeeper.sh $KAFKA_HOME/bin
 COPY kafka.conf /etc/supervisor/conf.d/
 COPY zookeeper.conf /etc/supervisor/conf.d/
 
+WORKDIR /home/kafka/kafka_2.13-3.0.0
 EXPOSE 9092-9094 2181
 CMD ["bash","/home/kafka/docker-entrypoint.sh"]
