@@ -11,11 +11,11 @@
 
 ## Executing 
 
-Running Kafka environment as a daemon.
+Running Kafka environment with Kafka.
 
-     $ docker run -d --name <container-name> -p 9092:9092 --hostname <your-hostname/ip address> kafka:2.6.0
+     $ docker run -d --name <container-name> -p 9092:9092 --hostname <your-hostname/ip address> kafka:3.0.0
 
-If you want to know what's happen inside the container, execute the following command.
+If you want to know what's happening inside the container, execute the following command.
 
      $ docker logs -f <container-name>
 
@@ -30,7 +30,7 @@ Verifiying if container is running.
 
 We can use the following example to verify if Kafka is working. We are going to use a **python** and their **kafka module**. We will write a consumer and a producer.
 
-The producer will send messages to topic (called **topic1**) and the consumer will read from.
+The producer will send messages to topic (called **stream-1**) and the consumer will read from there.
 
 You have to install **python kafka module**.
 
@@ -106,13 +106,13 @@ Another way to test how kafka container is working.
 
 **Creating a topic**
 
-We will create a topic called **TOPIC_TEST**
+We will create a topic called **TOPIC-TEST**
 
      $ docker exec -i kafka-1 bin/kafka-topics.sh --create --topic TOPIC-TEST --bootstrap-server localhost:9092 --partitions 2 --replication-factor 1
 
 **Writing some messages (events)**
 
-We must execute and write messages (events) using the **TOPIC_TEST**
+We must execute and write messages (events) using the **TOPIC-TEST**
 
      $ docker exec -i <container-name> bin/kafka-console-producer.sh --topic TOPIC-TEST --bootstrap-server localhost:9092
      This is an event with data
@@ -120,7 +120,7 @@ We must execute and write messages (events) using the **TOPIC_TEST**
 
 **Reading messages (events)**
 
-The command executes a kafka consumer and wait for events, reading from **TOPIC_TEST**.
+The command executes a kafka consumer and wait for events, reading from **TOPIC-TEST**.
 
      $ docker exec -i <container-name> bin/kafka-console-consumer.sh --topic TOPIC-TEST --from-beginning --bootstrap-server localhost:9092
      This is an event with data
