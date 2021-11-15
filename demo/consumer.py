@@ -11,4 +11,4 @@ if __name__ == '__main__':
     )
     print("Receiving Data")
     for msg in consumer:
-        print (msg.value)
+        print (msg.value.decode("utf-8"))
